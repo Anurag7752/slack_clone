@@ -1,14 +1,13 @@
 import { configDotenv } from "dotenv";
 import express from "express";
-import {ENV} from "./config/env.js";
+import { ENV } from "./config/env.js";
 import { clerkMiddleware } from "@clerk/express";
-import {functions, inngest} from "./config/inngest.js";
-import { serve} from "@inngest/express";
+import {functions, inngest } from "./config/inngest.js";
+import { serve } from "inngest/express";
 import chatRoutes from "./routes/chat.route.js";
-import express from "express";
 import cors from "cors";
 import * as Sentry from "@sentry/node";
-
+import { connectDB } from "./config/db.js";
 
 configDotenv();
 const app = express();
@@ -36,24 +35,7 @@ app.use("/api/chat", chatRoutes);
 
 Sentry.setupExpressErrorHandler(app);
 
-// const startServer = async () => {
-//   try {
-//     await connectDB();
-//     if (ENV.NODE_ENV !== "production") {
-//       app.listen(ENV.PORT, () => {
-//         console.log("Server started on port:", ENV.PORT);
-//       });
-//     }
-//   } catch (error) {
-//     console.error("Error starting server:", error);
-//     process.exit(1); // Exit the process with a failure code
-//   }
-// };
-
-// startServer();
-
 app.listen(PORT, () => {
   console.log("Server started on port:", ENV.PORT);
-}) 
-
-export default app;
+  connectDB();
+});

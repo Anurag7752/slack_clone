@@ -8,6 +8,7 @@ Follow the instructions below to set up and run the application locally.
 ## 🧪 Environment Variables
 
 ### Backend (`/backend/.env`)
+
 ```env
 PORT=5001
 MONGO_URI=your_mongo_uri_here

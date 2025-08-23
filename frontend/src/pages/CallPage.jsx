@@ -1,9 +1,6 @@
 import { UserButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-
-
-
 import {
   Chat,
   Channel,
@@ -16,12 +13,20 @@ import {
 import { HashIcon, PlusIcon, UsersIcon } from "lucide-react";
 
 
-const HomePage = () => {
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * The home page of the app, this is the main entry point. It displays the list of channels and
+ * messages in the selected channel. It also allows the user to create a new channel and switch
+ * between channels.
+ *
+ * @returns {React.ReactElement} The home page component.
+ */
+/*******  c473f26f-8ec7-4f79-91f7-f7e9dde4fefa  *******/const HomePage = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [activeChannel, setActiveChannel] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { chatClient, error, isLoading } = useStreamChat();
+  const { chatClient, error, isLoading } = useSearchParams();
 
   // set active channel from URL params
 
